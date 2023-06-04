@@ -16,7 +16,8 @@ tabla_subida <- data %>%
   arrange(Rango_de_Velocidad) %>%
   rename(Frecuencia = n) %>%
   mutate(Frecuencia_Relativa = Frecuencia / sum(Frecuencia),
-         Frecuencia_Acumulada = cumsum(Frecuencia))
+         Frecuencia_Acumulada = cumsum(Frecuencia)) %>%
+  filter(Frecuencia != 0)
 
 # Convertir los intervalos de subida a formato de cadena
 tabla_subida$Rango_de_Velocidad <- as.character(tabla_subida$Rango_de_Velocidad)
@@ -28,7 +29,8 @@ tabla_bajada <- data %>%
   arrange(Rango_de_Velocidad) %>%
   rename(Frecuencia = n) %>%
   mutate(Frecuencia_Relativa = Frecuencia / sum(Frecuencia),
-         Frecuencia_Acumulada = cumsum(Frecuencia))
+         Frecuencia_Acumulada = cumsum(Frecuencia)) %>%
+  filter(Frecuencia != 0)
 
 # Convertir los intervalos de bajada a formato de cadena
 tabla_bajada$Rango_de_Velocidad <- as.character(tabla_bajada$Rango_de_Velocidad)
