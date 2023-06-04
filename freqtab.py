@@ -1,5 +1,4 @@
 import pandas as pd
-import statistics
 import math
 
 # Leer los datos del archivo resultados.csv
@@ -9,8 +8,8 @@ velocidad_subida = data["up"]
 velocidad_bajada = data["down"]
 
 # Definir los intervalos de clase
-rango_min = math.floor(min(velocidad_subida) / 10) * 10
-rango_max = math.ceil(max(velocidad_subida) / 10) * 10
+rango_min = math.floor(min(min(velocidad_subida), min(velocidad_bajada)) / 10) * 10
+rango_max = math.ceil(max(max(velocidad_subida), max(velocidad_bajada)) / 10) * 10
 rangos = list(range(rango_min, rango_max + 10, 10))
 
 # Tabla de frecuencia de velocidad de subida
