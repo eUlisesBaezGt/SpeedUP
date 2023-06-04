@@ -17,7 +17,7 @@ def monitor_server(url, interval):
         time.sleep(interval)
 
 if __name__ == "__main__":
-    server_url = "https://google.com"  # Replace with your server URL
+    server_url = "https://github.com/"  # Replace with your server URL
     check_interval = 60  # Check interval in seconds (e.g., every 60 seconds)
 
     monitor_server(server_url, check_interval)
