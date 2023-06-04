@@ -28,6 +28,9 @@ tabla_subida["Frecuencia Acumulada"] = tabla_subida["Frecuencia"].cumsum()
 # Convertir los intervalos de subida a formato de cadena
 tabla_subida["Rango de Velocidad"] = tabla_subida["Rango de Velocidad"].astype(str)
 
+# Filtrar filas con frecuencia diferente de 0
+tabla_subida = tabla_subida[tabla_subida["Frecuencia"] != 0]
+
 # Tabla de frecuencia de velocidad de bajada
 tabla_bajada = (
     pd.cut(velocidad_bajada, bins=rangos, include_lowest=True)
@@ -43,6 +46,9 @@ tabla_bajada["Frecuencia Acumulada"] = tabla_bajada["Frecuencia"].cumsum()
 
 # Convertir los intervalos de bajada a formato de cadena
 tabla_bajada["Rango de Velocidad"] = tabla_bajada["Rango de Velocidad"].astype(str)
+
+# Filtrar filas con frecuencia diferente de 0
+tabla_bajada = tabla_bajada[tabla_bajada["Frecuencia"] != 0]
 
 # Imprimir la tabla de frecuencia de velocidad de subida
 print("Tabla de Frecuencia de Velocidad de Subida:")
