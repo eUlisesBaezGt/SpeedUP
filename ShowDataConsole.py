@@ -2,22 +2,26 @@ import speedtest
 import socket
 import netifaces
 
+
 def obtener_direccion_ip():
     hostname = socket.gethostname()
     direccion_ip = socket.gethostbyname(hostname)
     return direccion_ip
 
+
 def obtener_direccion_router():
     gateways = netifaces.gateways()
-    direccion_router = gateways['default'][netifaces.AF_INET][0]
+    direccion_router = gateways["default"][netifaces.AF_INET][0]
     return direccion_router
+
 
 def calcular_distancia(ip1, ip2):
     distancia = abs(int(ip1.split(".")[-1]) - int(ip2.split(".")[-1]))
     return distancia
 
+
 def encontrar_ubicacion_optima(ip_computadora, puntos_acceso):
-    distancia_minima = float('inf')
+    distancia_minima = float("inf")
     ubicacion_optima = None
 
     for ap in puntos_acceso:
@@ -27,6 +31,7 @@ def encontrar_ubicacion_optima(ip_computadora, puntos_acceso):
             ubicacion_optima = ap
 
     return ubicacion_optima
+
 
 def medir_velocidad():
     st = speedtest.Speedtest()
@@ -58,6 +63,5 @@ def main():
     print("Velocidad de bajada:", velocidad_bajada, "Mbps")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-    
