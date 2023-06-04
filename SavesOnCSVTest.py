@@ -1,7 +1,7 @@
-import csv
-import speedtest
 import socket
 import netifaces
+import subprocess
+import re
 
 def obtener_direccion_ip():
     hostname = socket.gethostname()
@@ -30,18 +30,18 @@ def encontrar_ubicacion_optima(ip_computadora, puntos_acceso):
     return ubicacion_optima
 
 def medir_velocidad():
-    st = speedtest.Speedtest()
-    velocidad_subida = st.upload() / 1000000  # Convertir a Mbps
-    velocidad_bajada = st.download() / 1000000  # Convertir a Mbps
+    try:
+        output = subprocess.check_output(["speedtest-cli", "--json"], timeout=10)
+        result = output.decode("utf-8")
+        speed_data = re.search(r'"upload": (\d+\.\d+), "download": (\d+\.\d+)', result)
+        if speed_data:
+            velocidad_subida = float(speed_data.group(1))
+            velocidad_bajada = float(speed_data.group(2))
+            return velocidad_subida, velocidad_bajada
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+        pass
 
-    return velocidad_subida, velocidad_bajada
-
-def guardar_resultados(resultados):
-    with open('resultados.csv', 'w', newline='') as archivo_csv:
-        writer = csv.writer(archivo_csv)
-        writer.writerow(["IP Computadora", "IP Router", "Distancia", "Ubicación Óptima", "Velocidad Subida", "Velocidad Bajada"])
-        for resultado in resultados:
-            writer.writerow(resultado)
+    return None, None
 
 def main():
     resultados = []
@@ -63,8 +63,16 @@ def main():
         resultado = [ip_computadora, ip_router, distancia_router, ubicacion_optima, velocidad_subida, velocidad_bajada]
         resultados.append(resultado)
 
-    guardar_resultados(resultados)
-    print("Datos guardados en el archivo resultados.csv")
+    with open('resultados.txt', 'w') as archivo_txt:
+        for resultado in resultados:
+            archivo_txt.write(f"Dirección IP de la computadora: {resultado[0]}\n")
+            archivo_txt.write(f"Dirección IP del router: {resultado[1]}\n")
+            archivo_txt.write(f"Distancia entre la computadora y el router: {resultado[2]}\n")
+            archivo_txt.write(f"Ubicación óptima para el punto de acceso: {resultado[3]}\n")
+            archivo_txt.write(f"Velocidad de subida: {resultado[4]} Mbps\n")
+            archivo_txt.write(f"Velocidad de bajada: {resultado[5]} Mbps\n\n")
+
+    print("Datos guardados en el archivo resultados.txt")
 
 if __name__ == '__main__':
     main()
