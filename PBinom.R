@@ -49,12 +49,12 @@ probabilidad_fuera_tolerancia_distancia <- 1 - probabilidad_dentro_tolerancia_di
 intentos <- 100
 queridos <- 15
 
-# Calcular la probabilidad de tener 15 mediciones fuera de tolerancia en 100 intentos
-probabilidad_medicion_fuera_tolerancia_subida <- dbinom(queridos, size = intentos, prob = probabilidad_fuera_tolerancia_subida)
+# Calcular la probabilidad de tener exactamente 15 mediciones fuera de tolerancia en 100 intentos
+probabilidad_medicion_fuera_tolerancia_subida <- dbinom(queridos, size = intentos, prob = probabilidad_fuera_tolerancia_subida) - dbinom(queridos-1, size = intentos, prob = probabilidad_fuera_tolerancia_subida)
 cat("Probabilidad de tener 15 mediciones fuera de tolerancia en 100 intentos (subida):", probabilidad_medicion_fuera_tolerancia_subida, "\n")
 
-probabilidad_medicion_fuera_tolerancia_bajada <- dbinom(queridos, size = intentos, prob = probabilidad_fuera_tolerancia_bajada)
+probabilidad_medicion_fuera_tolerancia_bajada <- dbinom(queridos, size = intentos, prob = probabilidad_fuera_tolerancia_bajada) - dbinom(queridos-1, size = intentos, prob = probabilidad_fuera_tolerancia_bajada)
 cat("Probabilidad de tener 15 mediciones fuera de tolerancia en 100 intentos (bajada):", probabilidad_medicion_fuera_tolerancia_bajada, "\n")
 
-probabilidad_medicion_fuera_tolerancia_distancia <- dbinom(queridos, size = intentos, prob =probabilidad_fuera_tolerancia_distancia)
+probabilidad_medicion_fuera_tolerancia_distancia <- dbinom(queridos, size = intentos, prob = probabilidad_fuera_tolerancia_distancia) - dbinom(queridos-1, size = intentos, prob = probabilidad_fuera_tolerancia_distancia)
 cat("Probabilidad de tener 15 mediciones fuera de tolerancia en 100 intentos (distancia):", probabilidad_medicion_fuera_tolerancia_distancia, "\n")
