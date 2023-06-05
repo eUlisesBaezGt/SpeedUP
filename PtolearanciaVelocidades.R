@@ -24,6 +24,12 @@ q_subida <- fuera_tolerancia_subida / length(velocidad_subida)
 p_bajada <- dentro_tolerancia_bajada / length(velocidad_bajada)
 q_bajada <- fuera_tolerancia_bajada / length(velocidad_bajada)
 
+cat("Media subida --> " , mean(velocidad_subida, na.rm = TRUE))
+cat("Desviación subida--> ", sd(velocidad_subida, na.rm = TRUE))
+
+cat("Media bajada --> " , mean(velocidad_bajada, na.rm = TRUE))
+cat("Desviación bajada --> ",sd(velocidad_bajada, na.rm = TRUE))
+
 # Imprimir los resultados
 cat("Probabilidad de velocidades de subida dentro de tolerancia P1:", p_subida, "\n")
 cat("Probabilidad de velocidades de subida fuera de tolerancia Q1:", q_subida, "\n")
