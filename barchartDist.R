@@ -8,10 +8,10 @@ Mode <- function(x) {
 }
 
 # Leer los datos del archivo resultados.csv
-data <- read.csv("resultados.csv")
+data <- read.csv("results.csv")
 
-velocidad_subida <- data$up
-velocidad_bajada <- data$down
+velocidad_subida <- as.numeric(data$up)
+velocidad_bajada <- as.numeric(data$down)
 
 # Cálculos estadísticos de subida
 media_subida <- mean(velocidad_subida, na.rm = TRUE)

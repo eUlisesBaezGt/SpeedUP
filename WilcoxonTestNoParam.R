@@ -1,5 +1,5 @@
 # Carga los datos
-data <- read.csv("resultados.csv")
+data <- read.csv("results.csv")
 
 # Extrae las velocidades de subida y bajada
 velocidad_subida <- data$up

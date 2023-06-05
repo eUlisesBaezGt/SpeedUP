@@ -2,7 +2,7 @@ library(ggplot2)
 library(stats)
 
 # Leer los datos del archivo resultados.csv
-data <- read.csv("resultados.csv")
+data <- read.csv("results.csv")
 
 velocidad_subida <- data$up
 velocidad_bajada <- data$down

@@ -2,7 +2,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-daa <- read.csv("resultados.csv")
+daa <- read.csv("results.csv")
 
 
 # Scatter plot of distance values

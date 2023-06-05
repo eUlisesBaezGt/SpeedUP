@@ -2,7 +2,7 @@
 library(readr)
 
 # Leer el archivo CSV
-datos <- read_csv("resultados.csv")
+datos <- read_csv("results.csv")
 
 # Obtener el vector de distancias
 distancia <- datos$distancia
@@ -15,12 +15,12 @@ dentro_tolerancia <- sum(abs(distancia - mean(distancia, na.rm = TRUE)) <= toler
 fuera_tolerancia <- sum(abs(distancia - mean(distancia, na.rm = TRUE)) > tolerancia)
 
 cat("Media distancia --> ",  mean(distancia, na.rm = TRUE))
-cat("Desviación distancia --> ", sd(distancia, na.rm = TRUE))
+cat("\nDesviación distancia --> ", sd(distancia, na.rm = TRUE))
 
 # Calcular las probabilidades
 p_distancia <- dentro_tolerancia / length(distancia)
 q_distancia <- fuera_tolerancia / length(distancia)
 
 # Imprimir los resultados
-cat("Probabilidad de distancias dentro de tolerancia P:", p_distancia, "\n")
+cat("\nProbabilidad de distancias dentro de tolerancia P:", p_distancia, "\n")
 cat("Probabilidad de distancias fuera de tolerancia Q:", q_distancia, "\n")

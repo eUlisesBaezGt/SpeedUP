@@ -2,7 +2,7 @@
 library(readr)
 
 # Leer el archivo CSV
-datos <- read_csv("resultados.csv")
+datos <- read_csv("results.csv")
 
 # Obtener los vectores de velocidad de subida y bajada
 velocidad_subida <- datos$up
@@ -50,7 +50,7 @@ probabilidad_fuera_tolerancia_distancia <- 1 - probabilidad_dentro_tolerancia_di
 library(readr)
 
 # Leer el archivo CSV
-datos <- read_csv("resultados.csv")
+datos <- read_csv("results.csv")
 
 # Obtener los vectores de velocidad de subida y bajada
 velocidad_subida <- datos$up

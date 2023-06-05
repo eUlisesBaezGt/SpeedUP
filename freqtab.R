@@ -2,7 +2,7 @@ library(dplyr)
 library(tidyr)
 
 # Leer los datos del archivo resultados.csv
-data <- read.csv("resultados.csv")
+data <- read.csv("results.csv")
 
 # Definir los intervalos de clase
 rango_min <- floor(min(c(data$up, data$down)) / 10) * 10

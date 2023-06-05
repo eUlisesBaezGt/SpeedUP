@@ -1,13 +1,13 @@
 # Carga los datos
-data <- read.csv("resultados.csv")
+data <- read.csv("results.csv")
 
 # Pide al usuario los nombres de los dos salones que quiere comparar
 salon1 <- readline(prompt="Introduce el nombre del primer salón: ")
 salon2 <- readline(prompt="Introduce el nombre del segundo salón: ")
 
 # Filtra los datos para obtener solo las mediciones de la velocidad de subida para los dos salones
-data_salon1 <- data[data$salon == salon1, "down"]
-data_salon2 <- data[data$salon == salon2, "down"]
+data_salon1 <- data[data$salon == salon1, "up"]
+data_salon2 <- data[data$salon == salon2, "up"]
 
 # Realiza la prueba t
 resultado <- t.test(data_salon1, data_salon2)
@@ -27,5 +27,5 @@ cat("La diferencia entre las medias es:", diferencia_medias, "\n")
 if (resultado$p.value < 0.05) {
   cat("Como el valor p es menor que 0.05, rechazamos la hipótesis nula. Esto significa que hay una diferencia significativa entre las medias de la velocidad de subida en los dos salones, por lo que aceptamos la hipótesis alternativa.\n")
 } else {
-  cat("Como el valor p es mayor que 0.05, no rechazamos la hipótesis nula. Esto significa que no hay una diferencia significativa entre las medias de la velocidad de subida en los dos salones, por lo que aceptamos la hipótesis nula de que las medias son iguales.\n")
+  cat("Como el valor p es mayor que 0.05, no rechazamos la hipótesis nula. Esto significa que no hay una diferencia significativa entre las medias de la velocidad de subida en los dos salones, por lo que aceptamos la hipótesis nula de que las medias son iguales.\n")
 }

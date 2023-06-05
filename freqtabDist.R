@@ -1,4 +1,4 @@
-data <- read.csv("resultados.csv")
+data <- read.csv("results.csv")
 
 data$distancia <- as.numeric(data$distancia)
 
