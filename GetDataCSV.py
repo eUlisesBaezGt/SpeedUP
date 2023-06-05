@@ -1,7 +1,7 @@
+import csv
 import socket
 import netifaces
 import speedtest
-import csv
 
 
 def obtener_direccion_ip():
@@ -43,33 +43,41 @@ def medir_velocidad():
 def main():
     resultados = []
     lugar = ""
+    writer = None
 
-    with open("resultados.csv", "w", newline="") as archivo:
-        writer = csv.writer(archivo)
-        writer.writerow(["salon", "distancia", "up", "down"])
+    for i in range(200):
+        if i % 20 == 0:
+            # Close the previous file if it's open
+            if writer:
+                archivo.close()
 
-        for i in range(10):
-            if i % 10 == 0:
-                lugar = input("Ingrese el nombre del salón: ")
+            # Get a new salon name and create a new CSV file
+            lugar = input("Ingrese el nombre del salón: ")
+            archivo = open(f"{lugar}_resultados.csv", "a", newline="")
+            writer = csv.writer(archivo)
+            writer.writerow(["salon", "distancia", "up", "down"])
 
-            # Obtener dirección IP de la computadora
-            ip_computadora = obtener_direccion_ip()
+        # Obtain the computer's IP address
+        ip_computadora = obtener_direccion_ip()
 
-            # Obtener dirección IP del router
-            ip_router = obtener_direccion_router()
+        # Obtain the router's IP address
+        ip_router = obtener_direccion_router()
 
-            distancia_router = calcular_distancia(ip_router, ip_computadora)
-            velocidad_subida, velocidad_bajada = medir_velocidad()
+        distancia_router = calcular_distancia(ip_router, ip_computadora)
+        velocidad_subida, velocidad_bajada = medir_velocidad()
 
-            print(
-                f"Salón {lugar}: Velocidad: up {velocidad_subida}, down {velocidad_bajada}, distancia {distancia_router}"
-            )
-            # Añadir a la lista de resultados
-            resultado = (lugar, distancia_router, velocidad_subida, velocidad_bajada)
-            resultados.append(resultado)
+        print(
+            f"Salón {lugar}: Velocidad: up {velocidad_subida}, down {velocidad_bajada}, distancia {distancia_router}"
+        )
+        # Add to the list of results
+        resultado = (lugar, distancia_router, velocidad_subida, velocidad_bajada)
+        resultados.append(resultado)
 
-            # Write to CSV
-            writer.writerow(resultado)
+        # Write to CSV
+        writer.writerow(resultado)
+
+    # Close the last file
+    archivo.close()
 
 
 if __name__ == "__main__":
