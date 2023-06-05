@@ -46,23 +46,29 @@ probabilidad_fuera_tolerancia_bajada <- 1 - probabilidad_dentro_tolerancia_bajad
 probabilidad_dentro_tolerancia_distancia <- pnorm(media_distancia + tolerancia_distancia, mean = media_distancia, sd = desviacion_distancia) - pnorm(media_distancia - tolerancia_distancia, mean = media_distancia, sd = desviacion_distancia)
 probabilidad_fuera_tolerancia_distancia <- 1 - probabilidad_dentro_tolerancia_distancia
 
-# Calcular la probabilidad de tener exactamente 15 mediciones fuera de tolerancia en 100 intentos
-intentos <- 100
-exitos <- 15
-probabilidad <- dbinom(exitos, intentos, probabilidad_fuera_tolerancia_subida, log = FALSE)
-print(probabilidad_fuera_tolerancia_subida)
-cat("Probabilidad de tener exactamente 15 mediciones fuera de tolerancia en 100 intentos (subida):", probabilidad, "\n")
+# Calcula la probabilidad de necesitar más de 150 mediciones para encontrar 10 mediciones fuera de tolerancias (subida)
+# Número de mediciones fuera de tolerancia deseado
+exitos_deseados_subida <- 10
+# Número máximo de mediciones totales
+intentos_maximos_subida <- 150
+# Probabilidad de una medición fuera de tolerancia en la velocidad de subida (ya calculada)
+probabilidad_subida <- 1 - pnbinom(intentos_maximos_subida - exitos_deseados_subida, exitos_deseados_subida, probabilidad_fuera_tolerancia_subida)
+cat("Probabilidad de necesitar más de 150 mediciones para encontrar 10 mediciones fuera de tolerancias (subida):", probabilidad_subida, "\n")
 
-# Calcular la probabilidad de tener exactamente 30 mediciones fuera de tolerancia en 200 intentos
-intentos <- 200
-exitos <- 30
-probabilidad <- dbinom(exitos, intentos, probabilidad_fuera_tolerancia_bajada, log = FALSE)
-print(probabilidad_fuera_tolerancia_bajada)
-cat("Probabilidad de tener exactamente 30 mediciones fuera de tolerancia en 200 intentos (bajada):", probabilidad, "\n")
+# Calcula la probabilidad de necesitar más de 300 mediciones para encontrar 20 mediciones fuera de tolerancias (bajada)
+# Número de mediciones fuera de tolerancia deseado
+exitos_deseados_bajada <- 20
+# Número máximo de mediciones totales
+intentos_maximos_bajada <- 300
+# Probabilidad de una medición fuera de tolerancia en la velocidad de bajada (ya calculada)
+probabilidad_bajada <- 1 - pnbinom(intentos_maximos_bajada - exitos_deseados_bajada, exitos_deseados_bajada, probabilidad_fuera_tolerancia_bajada)
+cat("Probabilidad de necesitar más de 300 mediciones para encontrar 20 mediciones fuera de tolerancias (bajada):", probabilidad_bajada, "\n")
 
-# Calcular la probabilidad de tener exactamente 20 mediciones fuera de tolerancia en 150 intentos
-intentos = 150
-exitos = 20
-probabilidad <- dbinom(exitos, intentos, probabilidad_fuera_tolerancia_distancia, log = FALSE)
-print(probabilidad_fuera_tolerancia_distancia)
-cat("Probabilidad de tener exactamente 20 mediciones fuera de tolerancia en 150 intentos (distancia):", probabilidad, "\n")
+# Calcula la probabilidad de necesitar más de 200 mediciones para encontrar 15 mediciones fuera de tolerancias (distancia)
+# Número de mediciones fuera de tolerancia deseado
+exitos_deseados_distancia <- 15
+# Número máximo de mediciones totales
+intentos_maximos_distancia <- 200
+# Probabilidad de una medición fuera de tolerancia en la distancia (ya calculada)
+probabilidad_distancia <- 1 - pnbinom(intentos_maximos_distancia - exitos_deseados_distancia, exitos_deseados_distancia, probabilidad_fuera_tolerancia_distancia)
+cat("Probabilidad de necesitar más de 200 mediciones para encontrar 15 mediciones fuera de tolerancias (distancia):", probabilidad_distancia, "\n")
