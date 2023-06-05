@@ -46,7 +46,7 @@ def main():
     lugar = ""
 
     for i in range(200):
-        if i % 20 == 0:
+        if i % 10 == 0:
             lugar = input("Ingrese el nombre del salón: ")
 
         # Obtener dirección IP de la computadora
