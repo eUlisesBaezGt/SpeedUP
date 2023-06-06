@@ -10,7 +10,7 @@ data_salon1 <- data[data$salon == salon1, "up"]
 data_salon2 <- data[data$salon == salon2, "up"]
 
 # Realiza la prueba t
-resultado <- t.test(data_salon1, data_salon2)
+resultado <- t.test(data_salon1, data_salon2, var.equal = FALSE)
 
 # Imprime el resultado de la prueba
 print(resultado)

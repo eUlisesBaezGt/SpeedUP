@@ -50,19 +50,19 @@ probabilidad_fuera_tolerancia_distancia <- 1 - probabilidad_dentro_tolerancia_di
 intentos <- 100
 exitos <- 15
 probabilidad <- dbinom(exitos, intentos, probabilidad_fuera_tolerancia_subida, log = FALSE)
-# print(probabilidad_fuera_tolerancia_subida)
+print(probabilidad_fuera_tolerancia_subida)
 cat("Probabilidad de tener exactamente 15 mediciones fuera de tolerancia en 100 intentos (subida):", probabilidad, "\n")
 
 # Calcular la probabilidad de tener exactamente 30 mediciones fuera de tolerancia en 200 intentos
 intentos <- 200
 exitos <- 30
 probabilidad <- dbinom(exitos, intentos, probabilidad_fuera_tolerancia_bajada, log = FALSE)
-# print(probabilidad_fuera_tolerancia_bajada)
+print(probabilidad_fuera_tolerancia_bajada)
 cat("Probabilidad de tener exactamente 30 mediciones fuera de tolerancia en 200 intentos (bajada):", probabilidad, "\n")
 
 # Calcular la probabilidad de tener exactamente 20 mediciones fuera de tolerancia en 150 intentos
 intentos = 150
 exitos = 20
 probabilidad <- dbinom(exitos, intentos, probabilidad_fuera_tolerancia_distancia, log = FALSE)
-# print(probabilidad_fuera_tolerancia_distancia)
+print(probabilidad_fuera_tolerancia_distancia)
 cat("Probabilidad de tener exactamente 20 mediciones fuera de tolerancia en 150 intentos (distancia):", probabilidad, "\n")
